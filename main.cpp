@@ -71,9 +71,20 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 HRESULT APIENTRY DrawIndexedPrimitive_hook(IDirect3DDevice9* pDevice, D3DPRIMITIVETYPE Type, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT startIndex, UINT primCount)
 {
+	//models
+	//Stride == 40
+	//bullet
+	//Stride == 48 && NumVertices == 2005 && vSize == 840
+	//outline
+	//Stride == 48 && NumVertices == 220 && vSize == 1000
+	//weapon
+	//Stride == 48 && NumVertices == 433 && vSize == 1356
+	//snowboard
+	//Stride == 40 && NumVertices != 185 && vSize == 2740
+
+
 	if(aimbot||esp)
 	if(NumVertices != 185) //snowboard
-	//Stride == 40 && NumVertices != 185 && vSize == 2740
 	if (Stride == 40 && vSize > 2500) //2884near, 3556far
 	{
 		AddModels(pDevice, 189);
@@ -81,7 +92,7 @@ HRESULT APIENTRY DrawIndexedPrimitive_hook(IDirect3DDevice9* pDevice, D3DPRIMITI
 	}
 
 	if (wallhack)
-	if (Stride == 40)
+	if ((Stride == 40)||(Stride == 48 && vSize == 840)||(Stride == 48 && vSize == 1000)||(Stride == 48 && vSize == 1356))
 	{
 		float bias = 1000.0f;
 		float bias_float = static_cast<float>(-bias);
@@ -254,7 +265,7 @@ HRESULT APIENTRY EndScene_hook(IDirect3DDevice9* pDevice)
 		ImGui::SliderInt("Aim Height", &aimheight, 0, 14);
 		ImGui::SliderInt("Pre Aim", &preaim, 0, 5);
 		ImGui::Checkbox("Autoshoot", &autoshoot);
-		//ImGui::SliderInt("countnum", &countnum, -1, 100);
+		ImGui::SliderInt("countnum", &countnum, -1, 100);
 		ImGui::End();
 
 	}
@@ -285,7 +296,7 @@ HRESULT APIENTRY EndScene_hook(IDirect3DDevice9* pDevice)
 				if (ModelEspInfo[i].pOutX > 1.0f && ModelEspInfo[i].pOutY > 1.0f && ModelEspInfo[i].RealDistance > 13.0f)
 				{
 					//draw cricle
-					ImGui::GetWindowDrawList()->AddCircle(ImVec2(ModelEspInfo[i].pOutX, ModelEspInfo[i].pOutY), 1000 / ModelEspInfo[i].RealDistance, IM_COL32(255, 255, 255, 255), 12, 2.0f); //scale with distance
+					ImGui::GetWindowDrawList()->AddCircle(ImVec2(ModelEspInfo[i].pOutX, ModelEspInfo[i].pOutY), 4000 / ModelEspInfo[i].RealDistance, IM_COL32(255, 255, 255, 255), 12, 2.0f); //scale with distance
 				
 					//draw text
 					//ImGui::GetWindowDrawList()->AddText(ImGui::GetFont(), ImGui::GetFontSize(), ImVec2(ModelEspInfo[i].pOutX, ModelEspInfo[i].pOutY), ImColor(255, 255, 0, 255), "Model", 0, 0.0f, 0); //draw text

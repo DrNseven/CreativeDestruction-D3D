@@ -78,15 +78,7 @@ D3DVIEWPORT9 Viewport;
 float ScreenCX;
 float ScreenCY;
 
-int countnum = 2000;
-int countnumm = 2;
-int countStride = -1;
-int countnumElements = -1;
-int countNumVertices = -1;
-int countvSize = -1;
-int countpSize = -1;
-int countmStartregister = -1;
-int countmVectorCount = -1;
+int countnum = -1;
 
 LPDIRECT3DTEXTURE9 Red, Green, Blue, Yellow;
 
