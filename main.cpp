@@ -59,7 +59,7 @@ HRESULT APIENTRY DrawIndexedPrimitive_hook(IDirect3DDevice9* pDevice, D3DPRIMITI
 	{
 		float bias = 1000.0f;
 		float bias_float = static_cast<float>(-bias);
-		bias_float /= 10000.0f;
+		bias_float /= 2000;//10000.0f;
 		pDevice->SetRenderState(D3DRS_DEPTHBIAS, *(DWORD*)&bias_float);
 		DrawIndexedPrimitive_orig(pDevice, Type, BaseVertexIndex, MinVertexIndex, NumVertices, startIndex, primCount);
 		pDevice->SetRenderState(D3DRS_DEPTHBIAS, 0);
