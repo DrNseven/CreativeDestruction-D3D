@@ -44,7 +44,8 @@ HRESULT APIENTRY DrawIndexedPrimitive_hook(IDirect3DDevice9* pDevice, D3DPRIMITI
 				if (vShader != NULL) { vShader->Release(); vShader = NULL; }
 
 	if (aimbot==1 || distanceesp == 1 || lineesp > 0 || boxesp == 1)
-	if (NumVertices != 185) //snowboard
+	//if (NumVertices != 185) //snowboard
+	if (NumVertices > 1160)//treasure chest
 	if (Stride == 40 && vSize > 2500) //compatibility
 	//if (Stride == 24 && vSize == 320) //freeze with distance esp
 	//if (vSize == 2884 || vSize == 3556) //2884near, 3556far
